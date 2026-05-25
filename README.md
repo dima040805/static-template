@@ -1,60 +1,39 @@
-# Diplodoc Static Template
+# Smartbot Pro — документация (Diplodoc)
 
-### Confgure GitHub Pages
+## GitHub Pages
 
-Enable GitHub pages (Settings -> Pages -> Build and deployment (Source) -> GitHub Action), then your github action will start working
+1. Запушь репозиторий в GitHub (`master`).
+2. **Settings → Pages → Build and deployment → Source: GitHub Actions** — включи один раз.
+3. После push workflow `.github/workflows/build.yml` соберёт сайт (~2–5 мин).
+4. URL: `https://<username>.github.io/<repo>/`
 
-### Local run
+Пуш **не** включает Pages автоматически — без шага 2 сайт не появится.
 
-```sh
-rm -rf ./build
-npx -y @diplodoc/cli -i ./ -o ./build
-npx -y http-server ./build --port=5000 --host=0.0.0.0 --cors
+## GitLab Pages
+
+1. Создай проект на [GitLab](https://gitlab.com/dima0408059).
+2. Запушь этот репозиторий:
+   ```bash
+   git remote add gitlab git@gitlab.com:dima0408059/smartbot-docs.git
+   git push -u gitlab master
+   ```
+3. CI возьмёт `.gitlab-ci.yml` — job `pages` отдаст артефакт `public/`.
+4. **Settings → Pages** — URL появится после успешного pipeline.
+5. Обычно: `https://dima0408059.gitlab.io/<project-name>/`
+
+## Локальный просмотр
+
+```bash
+rm -rf ./_site
+npx -y @diplodoc/cli@latest build -i ./ -o ./_site --allow-custom-resources
+npx -y http-server ./_site --port 5000
 ```
 
-After that, just open http://localhost:5000
+Открыть: http://localhost:5000/ru/Smartbot_Pro.html
 
-### Docker
+## Структура
 
-If you need to build docker, just run the code
-
-```sh
-rm -rf ./build ./_site
-npx -y @diplodoc/cli -i ./ -o ./_site
-DOCKER_BUILDKIT=1 docker build --platform linux/amd64 -t MYCOMPANY/docs .
-docker push MYCOMPANY/docs:latest
-```
-
-### GitHub Docker build Action
-
-Add the following secrets into the secret storage
-
-```
-DOCKERHUB_USERNAME
-DOCKERHUB_TOKEN
-```
-
-Add the following steps into `.github/workflows/build.yml`
-
-```yaml
-      -
-        name: Set up QEMU
-        uses: docker/setup-qemu-action@v3
-      -
-        name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
-      -
-        name: Login to Docker Hub
-        uses: docker/login-action@v3
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
-      -
-        name: Build and push
-        uses: docker/build-push-action@v6
-        with:
-          context: .
-          push: true
-          tags: MYCOMPANY/docs:latest
-```
-
+- `ru/` — markdown и `toc.yaml`
+- `_assets/` — стили
+- `scripts/` — утилиты импорта из GitBook (не нужны для деплоя)
+- `build/`, `_site/`, `public/` — артефакты сборки (в git не коммитить)

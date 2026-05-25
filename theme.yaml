@@ -1,0 +1,37 @@
+# GitBook docs.smartbotpro.ru palette (primary rgb 52 109 219)
+base-brand: '#346BDB'
+
+light:
+  base-background: '#FFFFFF'
+  text-primary: '#181D26'
+  text-secondary: '#57606A'
+  line-generic: '#E6E8EB'
+  link: '#346BDB'
+  link-hover: '#2857B8'
+  base-selection: rgba(52, 109, 219, 0.12)
+  base-simple-hover: rgba(52, 109, 219, 0.06)
+  code-background: '#F6F8FA'
+  inline-code-background: '#F6F8FA'
+  note-info-background: '#E8F0FE'
+  note-tip-background: '#E6F7ED'
+  note-warning-background: '#FFF8E6'
+  note-important-background: '#FFEBE9'
+  mini-toc-active-border: '#346BDB'
+
+dark:
+  base-brand: '#508BFC'
+  base-background: '#111418'
+  text-primary: '#F5F7FA'
+  text-secondary: '#9DA7B3'
+  line-generic: '#2A3038'
+  link: '#508BFC'
+  link-hover: '#7AA7FF'
+  base-selection: rgba(80, 139, 252, 0.18)
+  base-simple-hover: rgba(80, 139, 252, 0.1)
+  code-background: '#1A1F26'
+  inline-code-background: '#1A1F26'
+  note-info-background: rgba(80, 139, 252, 0.15)
+  note-tip-background: rgba(16, 185, 129, 0.15)
+  note-warning-background: rgba(245, 158, 11, 0.15)
+  note-important-background: rgba(239, 68, 68, 0.15)
+  mini-toc-active-border: '#508BFC'

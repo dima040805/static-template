@@ -1,0 +1,39 @@
+image: node:20
+
+stages:
+  - build
+  - deploy
+
+variables:
+  NPM_CONFIG_CACHE: .npm
+
+cache:
+  key: diplodoc
+  paths:
+    - .npm/
+
+build:docs:
+  stage: build
+  script:
+    - npm install -g @diplodoc/cli@latest
+    - yfm build -i ./ -o ./public --allow-custom-resources
+  artifacts:
+    paths:
+      - public
+  rules:
+    - if: $CI_COMMIT_BRANCH == "master"
+    - if: $CI_COMMIT_BRANCH == "main"
+
+pages:
+  stage: deploy
+  needs:
+    - job: build:docs
+      artifacts: true
+  script:
+    - echo "GitLab Pages artifact ready in public/"
+  artifacts:
+    paths:
+      - public
+  rules:
+    - if: $CI_COMMIT_BRANCH == "master"
+    - if: $CI_COMMIT_BRANCH == "main"

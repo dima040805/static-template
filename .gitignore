@@ -1,2 +1,6 @@
 /build
 /_site
+/public
+.DS_Store
+*.bak
+.npm

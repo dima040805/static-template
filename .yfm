@@ -1,4 +1,21 @@
-allowHTML: true
-lang: 'en'
-langs: ['en', 'ru']
+allowHtml: true
+allowCustomResources: true
+lang: ru
+langs: ['ru']
 
+title: Smartbot Pro
+description: Документация Smartbot Pro
+
+interface:
+  toc-header: false
+  search: true
+  favicon-src: https://167800996-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/organizations%2F-M0DMiuC0q5onO-ID_le%2Fsites%2Fsite_GuuC1%2Ficon%2Fd8ISqHQRsaSGoU3koU6I%2FFrame%202087324903.png?alt=media&token=c00fb862-b010-45a7-b23e-5c26db10d405
+
+search:
+  provider: local
+  tolerance: 2
+  confidense: phrased
+
+resources:
+  style:
+    - _assets/style/custom.css
